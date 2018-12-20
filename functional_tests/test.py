@@ -1,25 +1,25 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import unittest
-from selenium.webdriver.support.wait import	WebDriverWait
+import sys
 import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 class NewVisitorTest(StaticLiveServerTestCase):
-	# 类专属方法，可通过类名进行调用
+	# 类专属方法
+	# ，可通过类名进行调用
 	@classmethod
 	def setUpClass(cls):
 		for arg in sys.argv:
 			if 'liveserver' in arg:
 				cls.server_url = 'http://' + arg.sqlit('=')[1]
 				return
-		super(NewVisitorTest, self).setUpClass()
+		super().setUpClass()
 		cls.server_url = cls.live_server_url
 
-    @classmethod
+	@classmethod
 	def tearDownClass(cls):
 		if cls.server_url == cls.live_server_url:
-			super(NewVisitorTest, self).tearDownClass()
+			super().tearDownClass()
 
 	def setUp(self):
 		self.browser = webdriver.Firefox()
